@@ -1,0 +1,49 @@
+.container{
+    height: 80vh;
+}
+
+.row{
+    height: 100%;
+}
+
+.formulario{
+    height: 100% ;
+    display: flex;
+    align-items: center;
+    
+}
+
+.card{
+    width: 80%;
+    box-shadow: 0px 10px 20px rgb(77, 77, 77);
+}
+
+.card:hover{
+    box-shadow: 0px 10px 40px rgb(77, 77, 77);
+    
+}
+
+.card-title{
+    margin-bottom: 5%;
+}
+
+.form-group{
+    margin-bottom: 5%;
+}
+
+label{
+    margin-left: 10px;
+    display: block;
+}
+input{
+    border-radius: 15px;
+}
+
+button{
+    width: 40%;
+    margin-top: 10%;
+}
+
+.boton{
+    text-align: center;
+}

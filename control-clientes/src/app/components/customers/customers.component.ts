@@ -20,7 +20,7 @@ export class CustomersComponent implements OnInit {
   clientForm = new FormGroup({
     nombre: new FormControl('', [Validators.required]),
     apellido: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required]),
+    email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
     saldo: new FormControl('', Validators.compose([Validators.required, Validators.min(400000)])),
   })
 
@@ -73,5 +73,11 @@ export class CustomersComponent implements OnInit {
 
   clear(){
     this.clientForm.reset();
+  }
+
+  delete(id){
+    if(confirm('¿Seguro que desea eliminar éste cliente?')){
+      this.clientService.deleteClient(id);
+    }
   }
 }

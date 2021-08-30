@@ -22,6 +22,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { from } from 'rxjs';
 import { ClientService } from './services/client.service';
+import { AuthGuard } from './guards/auth.guard';
+import { ConfigurationService } from './services/configuration.service';
+
 
 @NgModule({
   declarations: [
@@ -47,7 +50,9 @@ import { ClientService } from './services/client.service';
     FlashMessagesModule.forRoot(),
     ReactiveFormsModule
   ],
-  providers: [ ClientService],
+  providers: [ ClientService, 
+    AuthGuard,
+    ConfigurationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,1 +1,49 @@
-<p>register works!</p>
+<flash-messages></flash-messages>
+<div class="container">
+    <div class="row">
+        <div class="col formulario">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h2>Registrarse</h2>
+                    </div>
+                    <form [formGroup]="regForm" (ngSubmit)="signUp()">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" class="form-control" formControlName="email">
+                            <small *ngIf="regForm.get('email').hasError('required') && (regForm.get('email').dirty || regForm.get('email').touched)"
+                            class="text-danger">
+                                *El campo es requerido
+                            </small>
+                            <small *ngIf="regForm.get('email').hasError('email')" class="text-danger">
+                                *El email no es valido
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Contraseña</label>
+                            <input type="password" id="password" name="password" class="form-control" formControlName="password">
+                            <small *ngIf="regForm.get('password').hasError('required') && (regForm.get('password').dirty || regForm.get('password').touched)" class="text-danger">
+                                *El campo es requerido
+                            </small>
+                            <small *ngIf="regForm.get('password').hasError('minlength')" class="text-danger">
+                                *Mininmo 7 carateres
+                            </small>
+                        </div>
+                        <div class="form-group boton">
+                            <button routerLink="/" class="btn btn-warning me-4">
+                                <i class="fa fa-arrow-left" aria-hidden="true"></i> Atras
+                            </button>
+                            <button type="submit" class="btn btn-success" [disabled]="!regForm.valid">
+                                <i class="fas fa-arrow-right"></i> Registrarse
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col m-auto text-center">
+            <i class="fas fa-user-plus fa-10x d-block"></i>
+            <h1>Customer Control</h1>
+        </div>
+    </div>
+</div>

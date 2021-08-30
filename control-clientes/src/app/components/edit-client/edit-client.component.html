@@ -1,1 +1,128 @@
-<p>edit-client works!</p>
+<header id="main-header" class="py-3 w-100 bg-info texte-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>
+                    <i class="fa fa-user" aria-hidden="true"></i> Editar cliente
+                </h1>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container mt-4 mb-4 w-100 form-container">
+    <div class="row">
+        <div class="col">
+            <form [formGroup]="editForm" (ngSubmit)="edit()">
+                <div class="form-group mb-3">
+                    <label for="nombre" class="ms-2 mb-1">Nombre(s)</label>
+                    <input type="text" name="nombre" id="nombre" class="form-control " formControlName="nombre">
+                    <small [hidden]="!(editForm.get('nombre').hasError('required') && (editForm.get('nombre').dirty || editForm.get('nombre').touched))"
+                    class="text-danger">
+                    *El campo es requerido
+                    </small>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="apellido" class="ms-2 mb-1">Apellidos</label>
+                    <input type="text" name="apellido" id="apellido" class="form-control " formControlName="apellido">
+                    <small *ngIf="editForm.get('apellido').hasError('required') && (editForm.get('apellido').dirty || editForm.get('apellido').touched)"
+                    class="text-danger">
+                    *El campo es requerido
+                    </small>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="apellido" class="ms-2 mb-1">Email</label>
+                    <input type="email" name="apellido" id="apellido" class="form-control " formControlName="email">
+                    <small *ngIf="editForm.get('email').hasError('required') && (editForm.get('email').dirty || editForm.get('email').touched)"
+                    class="text-danger">
+                        *El campo es requerido
+                    </small>
+                    <small *ngIf="editForm.get('email').hasError('email')" class="text-danger">
+                        *El email no es valido
+                    </small>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="saldo" class="ms-2 mb-1">Saldo <small style="color: silver;">(sin puntos ni comas)</small></label>
+                    <input type="number" name="saldo" id="saldo" class="form-control " formControlName="saldo" 
+                    placeholder="min. 400000 pesos">
+                    <small *ngIf="editForm.get('saldo').hasError('required') && (editForm.get('saldo').dirty || editForm.get('saldo').touched)"
+                    class="text-danger">
+                    *El campo es requerido
+                    </small>
+                    <!-- {{ editForm.get("saldo").errors | json }} -->
+                </div>
+                <section class="py-4 mb-4 bg-light">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4 m-auto">
+                                <button type="reset" class="btn btn-warning" routerLink="/board/customers">
+                                    <i class="fa fa-times" aria-hidden="true"></i> descartar
+                                </button>
+                            </div>
+                            <div class="col-md-4 m-auto">
+                                <button type="submit" class="btn btn-success" [disabled]="!editForm.valid">
+                                    <i class="fa fa-check" aria-hidden="true"></i> guardar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </form>
+        </div>
+        <div class="col">
+            <div class="card mt-4">
+                <div class="card-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <h4 class="text-center">Datos actuales</h4>
+                                <div class="mt-4 mb-2">
+                                    <div class="row bg-light p-2">
+                                        <div class="col-4 border-end">
+                                            <b>Nombre(s)</b>
+                                        </div>
+                                        <div class="col-8">
+                                            <span class="ms-3">{{ searchClient.nombre }} </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <div class="row bg-light p-2">
+                                        <div class="col-4 border-end">
+                                            <b>Apellidos</b>
+                                        </div>
+                                        <div class="col-8">
+                                            <span class="ms-4">{{ searchClient.apellido }} </span>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="mb-2">
+                                    <div class="row bg-light p-2">
+                                        <div class="col-4 border-end">
+                                            <b>Email</b>
+                                        </div>
+                                        <div class="col-8">
+                                            <span class="ms-3">{{ searchClient.email }} </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <div class="row bg-light p-2">
+                                        <div class="col-4 border-end">
+                                            <b>Saldo</b>
+                                        </div>
+                                        <div class="col-8">
+                                            <span class="ms-3"> {{ searchClient.saldo | currency: 'COL': '$' }} </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

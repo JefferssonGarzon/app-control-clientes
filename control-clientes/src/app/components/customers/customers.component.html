@@ -1,3 +1,15 @@
+<header id="main-header" class="py-2 bg-info text-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>
+                    <i class="fas fa-cog"></i> Control clientes
+                </h1>
+            </div>
+        </div>
+    </div>
+</header>
+
 <!-- Botones -->
 <section id="actions" class="py-4 mb-4 bg-light">
     <div class="container">
@@ -25,7 +37,7 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th>#</th>
-                                <th>Nombre</th>
+                                <th>Nombre completo</th>
                                 <th>Saldo</th>
                                 <th></th>
                             </tr>
@@ -35,9 +47,12 @@
                                 <td> {{ i + 1 }} </td>
                                 <td> {{ client.nombre }} {{ client.apellido }}</td>
                                 <td> {{ client.saldo | currency: 'COL': '$' }} </td>
-                                <td>
-                                    <a routerLink="/edit-client/{{ client.id }}" class="btn btn-secondary">
+                                <td align="center">
+                                    <a routerLink="/board/client/edit/{{ client.id }}" class="btn btn-secondary me-2">
                                         <i class="fa fa-angle-double-right" aria-hidden="true"></i> Editar
+                                    </a>
+                                    <a class="btn btn-danger" (click)="delete(client.id)">
+                                        <i class="fa fa-trash" aria-hidden="true"></i> Eliminar
                                     </a>
                                 </td>
                             </tr>
@@ -69,7 +84,9 @@
     </div>
 </section>
 
+
 <!-- Ventana modal -->
+
 <ng-template #content let-modal>
     <div class="modal-header bg-info">
         <h4 class="modal-title" id="modal-basic-title">Agregar cliente</h4>
@@ -81,7 +98,7 @@
     <form [formGroup]='clientForm' (ngSubmit)='add()'>
         <div class="modal-body">
             <div class="form-group mb-3">
-                <label for="nombre" class="ms-2 mb-1">Nombre</label>
+                <label for="nombre" class="ms-2 mb-1">Nombre(s)</label>
                 <input type="text" name="nombre" id="nombre" class="form-control" formControlName="nombre">
                 <small [hidden]="!(clientForm.get('nombre').hasError('required') && (clientForm.get('nombre').dirty || clientForm.get('nombre').touched))"
                 class="text-danger">
@@ -89,7 +106,7 @@
                 </small>
             </div>
             <div class="form-group mb-3">
-                <label for="apellido" class="ms-2 mb-1">Apellido</label>
+                <label for="apellido" class="ms-2 mb-1">Apellidos</label>
                 <input type="text" name="apellido" id="apellido" class="form-control" formControlName="apellido">
                 <small *ngIf="clientForm.get('apellido').hasError('required') && (clientForm.get('apellido').dirty || clientForm.get('apellido').touched)"
                 class="text-danger">
@@ -98,10 +115,13 @@
             </div>
             <div class="form-group mb-3">
                 <label for="apellido" class="ms-2 mb-1">Email</label>
-                <input type="text" name="apellido" id="apellido" class="form-control" formControlName="email">
+                <input type="text" name="email" id="email" class="form-control" formControlName="email">
                 <small *ngIf="clientForm.get('email').hasError('required') && (clientForm.get('email').dirty || clientForm.get('email').touched)"
                 class="text-danger">
-                *El campo es requerido
+                    *El campo es requerido
+                </small>
+                <small *ngIf="clientForm.get('email').hasError('email')" class="text-danger">
+                    *El email no es valido
                 </small>
             </div>
             <div class="form-group mb-3">
@@ -111,6 +131,9 @@
                 <small *ngIf="clientForm.get('saldo').hasError('required') && (clientForm.get('saldo').dirty || clientForm.get('saldo').touched)"
                 class="text-danger">
                 *El campo es requerido
+                </small>
+                <small *ngIf="clientForm.get('saldo').hasError('min')" class="text-danger">
+                    *monto minimo: $ 400.000 mil
                 </small>
                 <!-- {{ clientForm.get("saldo").errors | json }} -->
             </div>

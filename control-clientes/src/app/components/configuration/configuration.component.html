@@ -1,1 +1,58 @@
-<p>configuration works!</p>
+<header id="main-header" class="py-2 bg-info text-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>
+                    <i class="fas fa-cog"></i> Control clientes
+                </h1>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="py-4 mb-4 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <a routerLink="/board/customers" class="btn btn-warning btn-block">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i> Regresar al inicio
+                </a>
+            </div>
+            <div class="col-md-3">
+                <button type="submit" (click)="save()" class="btn btn-success btn-block">
+                    <i class="fa fa-check" aria-hidden="true"></i> Guardar cambios
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="configuracion" class="campo">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Editar configuracion</h4>
+                    </div>
+                    <div class="card-body">
+                        <fieldset class="form-group">
+                            <legend>Permitir registro de usuarios</legend>
+                            <div class="form-check">
+                                <label for="check" class="form-check-label">
+                                    <input 
+                                    type="checkbox" 
+                                    class="form-check-input" 
+                                    id="check"
+                                    name="permitirRegistro"
+                                    [(ngModel)]="permitirRegistro"
+                                    [checked]="permitirRegistro"> {{ permitirRegistro?"Sí":"No" }}
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
