@@ -80,4 +80,39 @@ export class CustomersComponent implements OnInit {
       this.clientService.deleteClient(id);
     }
   }
+
+  // getters
+  get nameFieldValid(){
+    return this.clientForm.get('nombre').touched && this.clientForm.get('nombre').valid;
+  }
+
+  get nameFieldInvalid(){
+    return this.clientForm.get('nombre').touched && this.clientForm.get('nombre').invalid;
+  }
+
+  get lastNameFieldValid(){
+    return (this.clientForm.get('apellido').touched || this.clientForm.get('apellido').dirty) && this.clientForm.get('apellido').valid;
+  }
+
+  get lastNameFieldInvalid(){
+    return (this.clientForm.get('apellido').touched || this.clientForm.get('apellido').dirty) && this.clientForm.get('apellido').invalid;
+  }
+
+  get emailFieldValid(){
+    return (this.clientForm.get('email').touched || this.clientForm.get('email').dirty) && this.clientForm.get('email').valid;
+  }
+
+  get emailFieldInvalid(){
+    return (this.clientForm.get('email').touched || this.clientForm.get('email').dirty) && this.clientForm.get('email').invalid;
+  }
+
+  get balanceFieldValid(){
+    return (this.clientForm.get('saldo').touched || this.clientForm.get('saldo').dirty) && this.clientForm.get('saldo').valid;
+  }
+
+  get balanceFieldInvalid(){
+    return (this.clientForm.get('saldo').touched || this.clientForm.get('saldo').dirty) && this.clientForm.get('saldo').invalid;
+  }
+
+  // end getters
 }
